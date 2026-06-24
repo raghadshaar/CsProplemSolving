@@ -347,7 +347,35 @@ class Program
 
         return result * sign;
     }
+    //8th problem 
 
+
+    public static bool IsPalindrome(int x)
+    {
+         List<int>nums = new();
+        while(x!=0)
+        {
+            nums.Add(x % 10);
+            x = x / 10;
+        }
+        if(x <0)
+        {
+            return false;
+        }
+        int right = nums.Count-1;
+        int left = 0;
+        while(left<right)
+        {
+            if (nums[left] != nums[right]) 
+            {
+                return false;
+            }
+            left++;
+            right--;
+
+        }
+        return true;
+    }
 
 
 
@@ -417,6 +445,10 @@ class Program
         Console.WriteLine("__________________________________________________________________________________________");
         Console.WriteLine("string to integer  " + MyAtoi(" -042"));
 
+
+        //8th problem :
+        Console.WriteLine("__________________________________________________________________________________________");
+        Console.WriteLine("Is this number Palindrome (true,false) 32123?:" + IsPalindrome(32123));
 
     }
 
