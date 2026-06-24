@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Globalization;
 
 class Program
 {
@@ -246,6 +247,16 @@ class Program
      }
 
      */
+
+
+
+
+
+
+
+
+
+
     public static string LongestPalindrome(string s)
     {
         string longest = "";
@@ -276,7 +287,25 @@ class Program
     }
 
 
+    //6th problem: 
 
+    public static int Reverse(int x)
+    {
+        int reversed = 0;
+
+        while (x != 0)
+        {
+            if (reversed > int.MaxValue / 10 || reversed < int.MinValue / 10)
+            {
+                reversed = 0;
+                break;
+            }
+
+           reversed =( x % 10) + reversed *10;
+            x /= 10;
+        }
+       return reversed;
+    }
 
 
 
@@ -338,6 +367,12 @@ class Program
         Console.WriteLine("longest Plindrome of \"brecerdf\" is " + LongestPalindrome("brecerdf"));
         Console.WriteLine("longest Plindrome of \"rtfggfuS\" is " + LongestPalindrome("rtfggfuS"));
 
+        Console.WriteLine("revese integer 3456 is "+ Reverse(3456));
+
+
+
+
+        //6th problem :
 
     }
 
