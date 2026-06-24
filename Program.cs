@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.Design;
+
 class Program
 {
 
@@ -16,9 +18,38 @@ class Program
                 (false, false) => false,
                 _ => true
             };
+    //
 
+    public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+    {
+        ListNode result = new ListNode();
+        ListNode Head = result;
 
+        int sum = 0;
+        int carry = 0;
+        int digit;
+        while (l1 != null || l2 != null)
+        {
+            sum =( l1 is null? 0: l1.val )+ (l2 is null ? 0:l2.val)+ carry ;
 
+         
+                carry = sum /10; 
+                digit = sum % 10;
+
+            if(l1 is not null) l1 = l1.next;
+            if(l2 is not null) l2 = l2.next;
+
+            result.next = new ListNode(digit);
+            sum = 0;
+            result = result.next;
+         
+        }
+        if(carry != 0)
+        {
+            result.next = new ListNode(carry);
+      }
+            return Head.next;
+    }
     public static int[] TwoSum(int[] nums, int target)
     {
         int needed;
@@ -45,10 +76,59 @@ class Program
     }
     static void Main()
     {
+
+       // First Proplem : Two Sum 
         Console.WriteLine("Two Sum Proplem :");
         int[] ints = [2, 11,6,9, 15,6,7,4];
         int[] results = TwoSum(ints, 10);
         Console.WriteLine("Indecies are {0},{1}", results[0], results[1]);
 
+
+
+        //Seconed Proplem : Add Two Numbers 
+
+        ListNode l1 = new ListNode(2,
+                  new ListNode(4,
+                  new ListNode(3)));
+
+        ListNode l2 = new ListNode(5,
+                        new ListNode(6,
+                        new ListNode(4)));
+
+        ListNode result = AddTwoNumbers(l1, l2);
+
+        Console.WriteLine("Add two numbers  :");
+
+        while (result != null)
+        {
+            Console.Write(result.val + " ");
+            result = result.next;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+public class ListNode
+{
+    public int val;
+    public ListNode next;
+
+    public ListNode(int val = 0, ListNode next = null)
+    {
+        this.val = val;
+        this.next = next;
     }
 }
