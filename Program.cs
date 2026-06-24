@@ -4,22 +4,6 @@ using System.ComponentModel.Design;
 class Program
 {
 
-    (String FirstName, String LastName) fullName = ("Raghad", "Shaar");
-    public static bool And(bool a, bool b) =>
-        (a, b) switch
-        {
-            (true, true) => true,
-            _ => false
-
-        };
-    public static bool Or(bool a, bool b) =>
-            (a, b) switch
-            {
-                (false, false) => false,
-                _ => true
-            };
-    //
-
     public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
         ListNode result = new ListNode();
@@ -74,10 +58,40 @@ class Program
         return result;
 
     }
+
+    //Third Proplem
+
+    public static int LengthOfLongestSubstring(string s)
+
+    {   int length = 0;
+        int left = 0;
+        int longest = 0;
+        HashSet <char> list = new HashSet<char>();
+        for (int i = 0; i < s.Length; i++)
+        {
+
+            while (list.Contains(s[i]))
+            {
+                list.Remove(s[left]);
+                left += 1;
+
+            }
+            list.Add(s[i]);
+            length = i - left + 1;
+            if (length > longest)
+            {
+                longest = length;
+            }
+        }
+
+        return longest;
+
+    }
     static void Main()
     {
+        Console.WriteLine("------------------------------------------------------------------------------------------");
 
-       // First Proplem : Two Sum 
+        // First Proplem : Two Sum 
         Console.WriteLine("Two Sum Proplem :");
         int[] ints = [2, 11,6,9, 15,6,7,4];
         int[] results = TwoSum(ints, 10);
@@ -96,14 +110,21 @@ class Program
                         new ListNode(4)));
 
         ListNode result = AddTwoNumbers(l1, l2);
+        Console.WriteLine("------------------------------------------------------------------------------------------");
 
         Console.WriteLine("Add two numbers  :");
 
         while (result != null)
         {
-            Console.Write(result.val + " ");
+            Console.WriteLine(result.val + " ");
             result = result.next;
         }
+
+        Console.WriteLine("------------------------------------------------------------------------------------------");
+
+
+        //Third Proplem :
+        Console.WriteLine("length of longest string in \"rarttyghRaghad\" is {0}", LengthOfLongestSubstring("rarttyghRaghad"));
 
     }
 
