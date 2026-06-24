@@ -379,7 +379,27 @@ class Program
 
 
 
+    //9th Problem:
 
+    public static int MaxArea(int[] height)
+    {
+        int max = 0;
+        int left = 0;
+        int area = 0;
+        int right = height.Length-1;
+        while(left<right)
+        {
+            area = (right - left) * Math.Min(height[left], height[right]);
+            if (area > max) { max = area; }
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+        return max;
+
+
+    }
 
 
     static void Main()
@@ -450,18 +470,15 @@ class Program
         Console.WriteLine("__________________________________________________________________________________________");
         Console.WriteLine("Is this number Palindrome (true,false) 32123?:" + IsPalindrome(32123));
 
+
+
+
+        //9th problem
+        int[] array = [1, 6, 6, 2, 5, 4, 8, 3, 7];
+        Console.WriteLine("__________________________________________________________________________________________");
+        Console.WriteLine("Return the maximum amount of water a container can store:" + MaxArea(array));
+
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
