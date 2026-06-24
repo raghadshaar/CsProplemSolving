@@ -59,7 +59,7 @@ class Program
 
     }
 
-    //Third Proplem
+    //Third Problem
 
     public static int LengthOfLongestSubstring(string s)
 
@@ -87,19 +87,113 @@ class Program
         return longest;
 
     }
+
+
+
+    //4th problem
+
+
+    public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+    {
+        double median = 0;
+        int p1 = 0;
+        int p2 = 0;
+        int endflag1 = 0;
+        int endflag2 = 0;
+
+
+
+        int[] merged = new int[nums1.Length + nums2.Length];
+         if(nums1.Length ==0)
+        {
+            if(nums2.Length == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                endflag1 = 1;
+            }
+
+        }
+        if (nums2.Length == 0)
+        {
+            endflag2 = 1;
+        }
+
+            for (int i = 0; i < (nums2.Length + nums1.Length); i++)
+
+
+        { 
+            if (endflag1 == 0)
+            {
+                if (endflag2 == 0)
+                {
+                    if (nums1[p1] < nums2[p2])
+                    {
+                        merged[i] = nums1[p1];
+                        p1++;
+                        if (p1 == nums1.Length)
+                        {
+                            endflag1 = 1;
+                        }
+                    }
+                    else
+                    {
+
+                        merged[i] = nums2[p2];
+                        p2++;
+                        if (p2 == nums2.Length)
+                        {
+                            endflag2 = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    merged[i] = nums1[p1];
+                    p1++;
+                    if (p1 == nums1.Length)
+                    {
+                        endflag1 = 1;
+                    }
+                }
+            }
+            else if (endflag2 == 0)
+            {
+
+                merged[i] = nums2[p2];
+                p2++;
+                if (p2 == nums2.Length)
+                {
+                    endflag2 = 1;
+
+                }
+            }
+        }
+
+        median = merged.Length % 2 == 1
+            ? merged[merged.Length / 2]
+            : (merged[merged.Length / 2 - 1] + merged[merged.Length / 2]) / 2.0;
+
+        return median;
+
+
+
+    }
     static void Main()
     {
         Console.WriteLine("------------------------------------------------------------------------------------------");
 
-        // First Proplem : Two Sum 
-        Console.WriteLine("Two Sum Proplem :");
+        // First Problem : Two Sum 
+        Console.WriteLine("Two Sum Problem :");
         int[] ints = [2, 11,6,9, 15,6,7,4];
         int[] results = TwoSum(ints, 10);
         Console.WriteLine("Indecies are {0},{1}", results[0], results[1]);
 
 
 
-        //Seconed Proplem : Add Two Numbers 
+        //Seconed Problem : Add Two Numbers 
 
         ListNode l1 = new ListNode(2,
                   new ListNode(4,
@@ -123,9 +217,23 @@ class Program
         Console.WriteLine("------------------------------------------------------------------------------------------");
 
 
-        //Third Proplem :
+        //Third Problem :
         Console.WriteLine("length of longest string in \"rarttyghRaghad\" is {0}", LengthOfLongestSubstring("rarttyghRaghad"));
 
+
+
+        Console.WriteLine("------------------------------------------------------------------------------------------");
+
+
+        int[] nums1 = [1, 2, 3, 4];
+        int[] nums2 = [7, 8, 9, 10];
+        //4th problem :
+        Console.WriteLine("Median of two sorted Arrays :"+FindMedianSortedArrays(nums1, nums2));
+
+
+
+
+        
     }
 
 
