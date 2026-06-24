@@ -181,6 +181,108 @@ class Program
 
 
     }
+
+    //5th problem :
+
+
+    /* public static string LongestPalindrome(string s)
+     { int currentLength = 0;
+         int longestLength= 0;
+         int left = 0;
+         int right = 0;
+         string longestPalindromee = "";
+        for(int i=0; i<s.Length; i++)
+         {
+             left = i - 1;
+             right = i + 1;
+             //test odd palindrome 
+             while (left >= 0 && right < s.Length)
+             {
+
+                 if (s[left].Equals(s[right]))
+                 {
+                     left--;
+                     right++;
+
+                 }
+                 else break;
+             }
+             left++;
+             right--;
+             if(right - left +1  > longestPalindromee.Length)
+             {
+                 longestPalindromee = s.Substring(left,right-left+1);
+             }
+
+             //test even palindrome
+             left = i;
+             right = i + 1;
+             while (left >= 0 && right < s.Length)
+             {
+
+                 if (s[left].Equals(s[right]))
+                 {
+                     left--;
+                     right++;
+
+                 }
+                 else break;
+             }
+             left++;
+             right--;
+             if (right-left+1 > longestPalindromee.Length)
+             {
+                 longestPalindromee = s.Substring(left, right - left + 1);
+             }
+
+
+
+         }
+
+         return longestPalindromee;
+
+
+
+     }
+
+     */
+    public static string LongestPalindrome(string s)
+    {
+        string longest = "";
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            string odd = Expand(s, i, i);
+            string even = Expand(s, i, i + 1);
+
+            if (odd.Length > longest.Length)
+                longest = odd;
+
+            if (even.Length > longest.Length)
+                longest = even;
+        }
+
+        return longest;
+    }
+    private static string Expand(string s, int left, int right)
+    {
+        while (left >= 0 && right < s.Length && s[left] == s[right])
+        {
+            left--;
+            right++;
+        }
+
+        return s.Substring(left + 1, right - left - 1);
+    }
+
+
+
+
+
+
+
+
+
     static void Main()
     {
         Console.WriteLine("------------------------------------------------------------------------------------------");
@@ -230,10 +332,13 @@ class Program
         //4th problem :
         Console.WriteLine("Median of two sorted Arrays :"+FindMedianSortedArrays(nums1, nums2));
 
+        //5th problem
+
+        Console.WriteLine("__________________________________________________________________________________________");
+        Console.WriteLine("longest Plindrome of \"brecerdf\" is " + LongestPalindrome("brecerdf"));
+        Console.WriteLine("longest Plindrome of \"rtfggfuS\" is " + LongestPalindrome("rtfggfuS"));
 
 
-
-        
     }
 
 
