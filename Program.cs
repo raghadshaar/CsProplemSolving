@@ -400,6 +400,59 @@ class Program
 
 
     }
+    //10th Problem : 3Sum
+
+    public static IList<IList<int>> ThreeSum(int[] nums)
+    {
+        Array.Sort(nums);
+
+        IList<IList<int>> result = new List<IList<int>>();
+
+        for (int i = 0; i < nums.Length - 2; i++)
+        {
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int target = -nums[i];
+            int left = i + 1;
+            int right = nums.Length - 1;
+
+            while (left < right)
+            {
+                int sum = nums[left] + nums[right];
+
+                if (sum == target)
+                {
+                    result.Add(new List<int>
+                {
+                    nums[i],
+                    nums[left],
+                    nums[right]
+                });
+
+                    left++;
+                    right--;
+
+                    while (left < right && nums[left] == nums[left - 1])
+                        left++;
+
+                    while (left < right && nums[right] == nums[right + 1])
+                        right--;
+                }
+                else if (sum < target)
+                {
+                    left++;
+                }
+                else
+                {
+                    right--;
+                }
+            }
+        }
+
+        return result;
+    }
+
 
 
     static void Main()
@@ -477,6 +530,33 @@ class Program
         int[] array = [1, 6, 6, 2, 5, 4, 8, 3, 7];
         Console.WriteLine("__________________________________________________________________________________________");
         Console.WriteLine("Return the maximum amount of water a container can store:" + MaxArea(array));
+
+
+        //10th problem
+        Console.WriteLine("__________________________________________________________________________________________");
+
+        int[] nums = { -1, 0, 1, 2, -1, -4 };
+
+        var result1 = ThreeSum(nums);
+
+        Console.WriteLine("Results:");
+
+        foreach (var triplet in result1)
+        {
+            Console.WriteLine($"[{triplet[0]}, {triplet[1]}, {triplet[2]}]");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
